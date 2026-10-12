@@ -41,6 +41,27 @@ const manifest = JSON.parse(readFileSync(join(packageRoot, 'package.json'), 'utf
 const { TYPERT } = await import(pathToFileURL(join(packageRoot, 'lib/types/typert.host.js')).href)
 const client = await import(pathToFileURL(join(packageRoot, 'lib/types/typert.remote-client.js')).href)
 
+/* ---- 0. every declared entry point exists ------------------------------ */
+/*
+ * The Loader imports this package by name. A path declared in `main`/`exports`
+ * that the build never emits fails that import, and a failed row is a warning at
+ * boot with a missing surface rather than a build error, so check the
+ * declarations against the filesystem first.
+ */
+const declaredEntries = [
+  ...(typeof manifest.main === 'string' ? [['main', manifest.main]] : []),
+  ...(typeof manifest.types === 'string' ? [['types', manifest.types]] : []),
+  ...Object.entries(manifest.exports ?? {}).flatMap(([key, value]) =>
+    typeof value === 'string'
+      ? [[`exports["${key}"]`, value]]
+      : Object.entries(value ?? {}).map(([condition, path]) => [`exports["${key}"].${condition}`, path])),
+  // `./src/*` and friends are patterns, not files.
+].filter(([, path]) => typeof path === 'string' && !path.includes('*') && (path.startsWith('./') || path.startsWith('lib/')))
+
+for (const [label, path] of declaredEntries) {
+  check(existsSync(join(packageRoot, path.replace(/^\.\//, ''))), `${label} points at "${path}", which the build did not emit`)
+}
+
 /* ---- 1. the host manifest -------------------------------------------- */
 
 check(TYPERT.package === manifest.name, `manifest.package must be the package name (got ${String(TYPERT.package)})`)
@@ -130,8 +151,35 @@ check(
   hostMethods.join('|') === clientMethods.join('|'),
   `the host and client faces disagree on the method set:\n      host:   ${hostMethods.join(', ')}\n      client: ${clientMethods.join(', ')}`,
 )
-check(hostMethods.length === 13, `expected 13 Remote methods, found ${hostMethods.length}`)
-check(!hostMethods.includes('versionInfo'), 'the upstream update-check method must be gone')
+check(!hostMethods.includes('versionInfo'), 'the removed update-check method must stay gone')
+
+/* ---- 4b. the table covers exactly what the host declares -------------- */
+/*
+ * The check above only proves the two published faces agree with EACH OTHER,
+ * which they do by construction: both are built from this one table. It cannot
+ * notice a `@Remote` on the host class that never made it into the table, and
+ * that failure is invisible until the panel calls the method and gets
+ * "unknown method" — a missing title chip, not a build error. `src/index.ts` is
+ * the authority, so read it and require the two sets to match exactly.
+ */
+const source = readFileSync(join(packageRoot, 'src', 'index.ts'), 'utf8')
+const declared = [...source.matchAll(/@Remote\(\s*'([^']+)'\s*\)/g)].map((match) => match[1]).sort()
+check(declared.length > 0, 'no @Remote decorators found in src/index.ts — the check would be vacuous')
+
+const missing = declared.filter((method) => !hostMethods.includes(method))
+const extra = hostMethods.filter((method) => !declared.includes(method))
+check(
+  missing.length === 0,
+  `the descriptor table is missing a @Remote the host declares, which fails at call time: ${missing.join(', ')}`,
+)
+check(
+  extra.length === 0,
+  `the descriptor table carries a method the host does not declare: ${extra.join(', ')}`,
+)
+check(
+  declared.join('|') === hostMethods.join('|'),
+  `src/index.ts and the descriptor table disagree:\n      index.ts: ${declared.join(', ')}\n      table:    ${hostMethods.join(', ')}`,
+)
 
 /* ---- 5. the built client bundle inlines the same set ------------------ */
 

@@ -224,9 +224,9 @@ const SNAPSHOT = metric('McpManagerSnapshot', McpManagerSnapshot)
  * `importJson` answers its own bulk-import report; every remaining write
  * answers the shared `McpApplyResult`.
  *
- * `versionInfo` is absent by design: it existed only to report the npm
- * self-update check, and this plugin no longer polls a registry. The panel's
- * version chip reads the local package version instead.
+ * `version` replaced the old `versionInfo`: it answers just this package's
+ * installed version for the title chip, where `versionInfo` also carried the
+ * result of an npm self-update check this plugin no longer performs.
  *
  * Two deliberate departures from the generated pair, neither of which is
  * wire-visible:
@@ -241,6 +241,10 @@ const SNAPSHOT = metric('McpManagerSnapshot', McpManagerSnapshot)
  */
 const METHODS: readonly MethodSpec[] = [
   /* ---- core ---- */
+  // An ad-hoc primitive result, so its symbol follows the generator's
+  // `<package>#<namespace>/<method>` spelling for unnamed shapes (the same
+  // form a primitive parameter uses, without the trailing `:<name>`).
+  { method: 'version', params: [], result: { type: `${PACKAGE_NAME}#${REMOTE_NAMESPACE}/version`, schema: z.string() } },
   { method: 'snapshot', params: [], result: SNAPSHOT },
 
   /* ---- gateway state ---- */

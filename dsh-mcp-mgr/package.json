@@ -52,12 +52,13 @@
     "LICENSE"
   ],
   "scripts": {
-    "build": "pnpm run build:host",
+    "build": "pnpm run clean && pnpm run build:host",
     "build:host": "tsc -p tsconfig.build.json",
     "typecheck": "tsc -p tsconfig.json",
-    "verify": "node tools/verify-typert.mjs",
+    "verify": "node tools/verify-typert.mjs && node tools/verify-gateway.mjs",
     "pack": "pnpm build && pnpm pack --pack-destination dist",
-    "check": "pnpm typecheck && pnpm build && pnpm verify"
+    "check": "pnpm typecheck && pnpm build && pnpm verify",
+    "clean": "node -e \"require('node:fs').rmSync('lib', { recursive: true, force: true })\""
   },
   "dependencies": {
     "chokidar": "^4.0.3",

@@ -3,15 +3,14 @@
   "description": "Browser half of dsh-mcp-mgr: the MCP server management panel in the dsh sidebar",
   "version": "1.0.0",
   "type": "module",
-  "main": "lib/index.js",
+  "main": "lib/types/index.js",
   "types": "lib/types/index.d.ts",
   "exports": {
     ".": {
       "types": "./lib/types/index.d.ts",
-      "default": "./lib/index.js"
+      "default": "./lib/types/index.js"
     },
     "./client": {
-      "types": "./lib/types/client/index.d.ts",
       "default": "./lib/client.js"
     },
     "./src/*": "./src/*",
@@ -31,9 +30,11 @@
     }
   },
   "files": [
-    "lib/index.js",
+    "lib/types/**/*.js",
+    "lib/types/**/*.d.ts",
     "lib/client.js",
-    "lib/types/**/*.d.ts"
+    "README.md",
+    "LICENSE"
   ],
   "license": "MIT",
   "peerDependencies": {
@@ -77,11 +78,12 @@
     "node": "^22.19.0 || >=24.0.0"
   },
   "scripts": {
-    "build": "pnpm run build:host && pnpm run build:client",
+    "build": "pnpm run clean && pnpm run build:host && pnpm run build:client",
     "build:host": "tsc -p tsconfig.build.json",
     "build:client": "tsdown",
     "typecheck": "tsc -p tsconfig.json && tsc -p tsconfig.client.json",
     "verify": "node tools/verify-client.mjs",
-    "check": "pnpm typecheck && pnpm build && pnpm verify"
+    "check": "pnpm typecheck && pnpm build && pnpm verify",
+    "clean": "node -e \"require('node:fs').rmSync('lib', { recursive: true, force: true })\""
   }
 }

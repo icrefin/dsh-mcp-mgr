@@ -11,5 +11,10 @@
     "composite": false,
     "incremental": false
   },
-  "include": ["src/index.ts"]
+  "include": [
+    "src/index.ts"
+  ],
+  "exclude": [
+    "src/client"
+  ]
 }

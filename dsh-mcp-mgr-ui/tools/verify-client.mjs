@@ -31,6 +31,31 @@ const manifest = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'))
 const failures = []
 const check = (condition, message) => { if (!condition) failures.push(message) }
 
+/* ---- 0. every declared entry point exists ------------------------------ */
+/*
+ * The Loader imports this package by name, and the client-modules scanner reads
+ * its `./client` export. A path that is declared but never emitted fails the
+ * import — and a failed row is not a build error, it is a warning at boot and a
+ * missing sidebar entry. `main`/`exports` are therefore checked against the
+ * filesystem before anything else.
+ */
+import { existsSync } from 'node:fs'
+
+const declaredEntries = [
+  ...(typeof manifest.main === 'string' ? [['main', manifest.main]] : []),
+  ...(typeof manifest.types === 'string' ? [['types', manifest.types]] : []),
+  ...Object.entries(manifest.exports ?? {}).flatMap(([key, value]) =>
+    typeof value === 'string'
+      ? [[`exports["${key}"]`, value]]
+      : Object.entries(value ?? {}).map(([condition, path]) => [`exports["${key}"].${condition}`, path])),
+// `./src/*` and friends are patterns, not files; only concrete paths are checked.
+].filter(([, path]) => typeof path === 'string' && !path.includes('*') && (path.startsWith('./') || path.startsWith('lib/')))
+
+for (const [label, path] of declaredEntries) {
+  const relativePath = path.replace(/^\.\//, '')
+  check(existsSync(join(root, relativePath)), `${label} points at "${path}", which the build did not emit`)
+}
+
 /* ---- 1. the bundle registers under the package name ------------------- */
 
 let captured

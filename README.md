@@ -117,10 +117,11 @@ The profile registry is created on the first save from the panel. Neither file h
 
 ## Remote surface
 
-Thirteen methods on the `mcpMgr` namespace, declared once in `src/typert.descriptors.ts` and wrapped as the host manifest and the browser contribution, so the two faces cannot disagree about a wire name or a codec:
+Fourteen methods on the `mcpMgr` namespace, declared once in `src/typert.descriptors.ts` and wrapped as the host manifest and the browser contribution, so the two faces cannot disagree about a wire name or a codec:
 
 | Method | Purpose |
 |---|---|
+| `version` | this package's installed version, for the title chip |
 | `snapshot` | the whole management view |
 | `setStrictMode` · `setActiveWorkspace` | gateway state, answering the refreshed snapshot |
 | `apply` · `removeServer` · `setServerEnabled` | workspace-local servers |
