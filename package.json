@@ -1,0 +1,19 @@
+{
+  "name": "dsh-mcp-mgr-workspace",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Workspace root for the two dsh-mcp-mgr packages: the host manager and the sidebar panel",
+  "packageManager": "pnpm@11.8.0",
+  "engines": {
+    "node": "^22.19.0 || >=24.0.0"
+  },
+  "scripts": {
+    "typecheck": "pnpm --filter dsh-mcp-mgr typecheck && pnpm --filter dsh-mcp-mgr-ui typecheck",
+    "build": "pnpm --filter dsh-mcp-mgr build && pnpm --filter dsh-mcp-mgr-ui build",
+    "verify": "pnpm --filter dsh-mcp-mgr verify && pnpm --filter dsh-mcp-mgr-ui verify",
+    "//check": "build BOTH packages before verifying either: the host's verifier reads the UI package's built bundle.",
+    "check": "pnpm typecheck && pnpm build && pnpm verify",
+    "install:profile": "sh tools/install-into-profile.sh"
+  },
+  "license": "MIT"
+}

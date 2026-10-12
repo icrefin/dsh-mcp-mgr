@@ -1,0 +1,11 @@
+# dsh-mcp-mgr bundle layer: the host manager and the sidebar panel it opens.
+#
+# Both packages are Loader rows of their own: `dsh-mcp-mgr` carries the
+# management logic and the Typert descriptors, `dsh-mcp-mgr-ui` carries the
+# browser bundle. The panel row is what the client-modules scanner reads for
+# its `dsh.client` declaration, so it cannot be folded into the host.
+- insert:
+    - id: mcp-mgr
+      name: dsh-mcp-mgr
+    - id: ui-mcp-mgr
+      name: dsh-mcp-mgr-ui

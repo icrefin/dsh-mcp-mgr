@@ -1,0 +1,115 @@
+name: Feature request
+description: Propose a change or addition to dsh-mcp-mgr
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Describe the problem first, then the solution. Requests that explain a real use
+        case are far more likely to be implemented. One request per issue, please.
+
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: Preflight checklist
+      options:
+        - label: I searched existing issues and discussions and did not find a duplicate.
+          required: true
+        - label: This request is about this project, not about `mcp-client` or DeepSeek Harness itself.
+          required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem statement
+      description: What are you trying to do, and what blocks you today?
+      placeholder: "I want to ... but currently I have to ..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: The change you want, including a rough panel shape, the tab it belongs in, or the JSON field it would add.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Other approaches, existing workarounds, or similar features elsewhere.
+    validations:
+      required: false
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      description: Which part of the project does this touch?
+      options:
+        - The Global servers tab (registry rows, add/edit/delete, JSON paste)
+        - The Workspaces tab (selection checkboxes, local servers, dangling `use` entries)
+        - Sync and mounting (which file wins, strict mode, the active workspace)
+        - Server definitions and validation (serverName rules, `${VAR}`, per-entry errors)
+        - The `mcpMgr` Remote surface (snapshot, method set, error results)
+        - Localization (English / Chinese copy)
+        - Documentation or examples
+        - Packaging, CI, or release
+        - Other (describe below)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: breaking
+    attributes:
+      label: Would this break existing users?
+      options:
+        - "No — additive change"
+        - "Yes — it changes existing behavior or interfaces"
+        - Not sure
+    validations:
+      required: true
+
+  - type: textarea
+    id: example
+    attributes:
+      label: Example usage
+      description: Show how the feature would look from a user's point of view.
+      render: shell
+      placeholder: |
+        # e.g. the shape a workspace file would take
+        {"use": ["shared-http-server"], "mcpServers": {"local-stdio": {"command": "..."}}}
+        # ...or the registry it would read
+        {"shared-http-server": {"type": "http", "url": "https://mcp.example.com/mcp"}}
+    validations:
+      required: false
+
+  - type: input
+    id: version
+    attributes:
+      label: Version you are running
+      placeholder: "v1.0.0 or main"
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Willingness to contribute
+      options:
+        - label: I can open a pull request for this.
+          required: false
+        - label: I can help with testing or documentation.
+          required: false
+
+  - type: checkboxes
+    id: conduct
+    attributes:
+      label: Code of Conduct
+      options:
+        - label: I agree to follow this project's Code of Conduct.
+          required: true

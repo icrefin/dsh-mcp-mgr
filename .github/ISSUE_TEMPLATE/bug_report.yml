@@ -1,0 +1,140 @@
+name: Bug report
+description: Report a reproducible defect in dsh-mcp-mgr so it can be fixed
+title: "[Bug]: "
+labels:
+  - bug
+  - needs-triage
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug. Fill in every field — incomplete reports are hard to
+        act on. Redact secrets, tokens, private keys, internal hostnames, and personal
+        data; use placeholders such as `192.0.2.10`, `<YOUR_EMAIL>`, `<YOUR_API_KEY>`.
+        A screenshot of the panel can itself be sensitive, because it carries real
+        server names, URLs, `headers`, `env` values and local paths, so redact it too.
+
+        **Security vulnerability?** Stop and read SECURITY.md instead. Never open a
+        public issue for a vulnerability.
+
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: Preflight checklist
+      description: Confirm each item before submitting.
+      options:
+        - label: I searched existing issues and did not find a duplicate.
+          required: true
+        - label: I am running the latest release or a recent commit of main.
+          required: true
+        - label: This is not a security vulnerability (those go through SECURITY.md).
+          required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Version or commit
+      description: Release tag, version number, or commit SHA of dsh-mcp-mgr where the bug occurs.
+      placeholder: "v1.0.0 or 1a2b3c4"
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Operating system, Node version, and the DeepSeek Harness build you ran it against.
+      placeholder: "macOS 15.5, Node 22.19.0, pnpm 11.8.0, dsh 0.2.0-rc.2"
+    validations:
+      required: true
+
+  - type: textarea
+    id: catalog
+    attributes:
+      label: MCP server definitions involved
+      description: Each server's `serverName`, its transport, and whether it is a registry entry or a workspace-local one, with URLs, headers and `env` values redacted — the same name can exist in both files.
+      placeholder: |
+        shared-http-server   streamable-http   global (mcp-servers.json)
+        local-stdio          stdio             workspace (mcp.json, enabled: true)
+      render: text
+    validations:
+      required: true
+
+  - type: textarea
+    id: difference
+    attributes:
+      label: What the panel showed vs. what the files say
+      description: The tab, the row's status and error text, and the JSON the two files actually contain. This difference is usually the bug.
+      placeholder: |
+        Panel:      Global servers > shared-http-server  · active
+        Registry:   {"shared-http-server":{"type":"http","url":"https://mcp.example.com/mcp"}}
+        Workspaces: my-app  [x] shared-http-server   (use: ["shared-http-server"])
+      render: text
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Exact, minimal steps. Number them. Include the command or the UI path.
+      placeholder: |
+        1. Install the bundle into profile '...'
+        2. Open the MCP Servers page and switch to the '...' tab
+        3. Add / edit / toggle / delete the server '...'
+        4. Observe '...'
+      render: shell
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What you expected to happen.
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: What actually happened, including the full error text.
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs, console output, or a screenshot of the control
+      description: Paste raw console output where possible; the host logs carry the `mcp-mgr:` prefix and the full failure reason. Redact a screenshot before attaching it.
+      render: text
+    validations:
+      required: false
+
+  - type: dropdown
+    id: regression
+    attributes:
+      label: Did this work before?
+      options:
+        - "No — first time using this plugin"
+        - "Yes — it regressed in a later version"
+        - Not sure
+    validations:
+      required: true
+
+  - type: textarea
+    id: workaround
+    attributes:
+      label: Workaround
+      description: Anything that makes the bug go away, even partly — for example disabling the server, or removing the bundle, which leaves each workspace's own inline `mcpServers` mounting exactly as they did before.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: conduct
+    attributes:
+      label: Code of Conduct
+      options:
+        - label: I agree to follow this project's Code of Conduct.
+          required: true

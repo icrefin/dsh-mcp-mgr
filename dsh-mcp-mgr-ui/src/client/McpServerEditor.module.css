@@ -1,0 +1,109 @@
+/* Global-server editor: Form | JSON tabs inside the shared Modal. */
+
+/* The shared Modal card is 380px wide, which leaves the paired key/value inputs
+   and the JSON editor too cramped; 720px fits two comfortable input columns.
+   The height cap hands the scroll to `.content`, so a long env/header list
+   scrolls inside the card instead of being clipped at the viewport edge. */
+.dialog {
+  width: min(720px, 100%);
+  max-height: 100%;
+}
+
+.content {
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tabs {
+  display: flex;
+  gap: 6px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 13px;
+}
+
+.field > span {
+  color: var(--dsw-alias-label-secondary);
+  font-size: 12px;
+}
+
+.fieldError {
+  color: var(--dsw-alias-state-error-primary);
+  font-size: 12px;
+  font-style: normal;
+}
+
+.formError {
+  margin: 0;
+  color: var(--dsw-alias-state-error-primary);
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.kvRow {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+/* Input is an inline-flex wrap, so a key/value pair would otherwise keep its
+   intrinsic width and leave the widened dialog half empty. */
+.kvInput {
+  flex: 1;
+  min-width: 0;
+}
+
+.kvEmpty {
+  margin: 0;
+  color: var(--dsw-alias-label-tertiary);
+  font-size: 12px;
+}
+
+.checkRow {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 13px;
+}
+
+.hint {
+  color: var(--dsw-alias-label-tertiary);
+  font-size: 12px;
+  font-style: normal;
+}
+
+.jsonInput {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 190px;
+  padding: 10px 12px;
+  border: 1px solid var(--dsw-alias-border-l2);
+  border-radius: var(--dsw-radius-sm);
+  background: var(--dsw-alias-bg-layer-3);
+  color: var(--dsw-alias-label-primary);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  line-height: 1.6;
+  resize: vertical;
+}
+
+.jsonInput:focus-visible {
+  border-color: var(--dsw-alias-brand-primary);
+  outline: none;
+}
