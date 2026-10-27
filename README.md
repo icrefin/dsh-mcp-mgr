@@ -11,7 +11,7 @@
 [![Stars](https://img.shields.io/github/stars/icrefin/dsh-mcp-mgr?style=flat-square)](https://github.com/icrefin/dsh-mcp-mgr/stargazers)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen?style=flat-square)](https://github.com/icrefin/dsh-mcp-mgr/pulls)
 [![Node](https://img.shields.io/badge/node-%3E%3D22.19-339933?style=flat-square&logo=node.js)](https://nodejs.org)
-[![dsh](https://img.shields.io/badge/dsh-0.2.0--rc.2-4B5563?style=flat-square)](https://github.com/deepseek-ai/deepseek-harness)
+[![dsh](https://img.shields.io/badge/dsh-0.2.1--rc.3-4B5563?style=flat-square)](https://github.com/deepseek-ai/deepseek-harness)
 
 > If this plugin saves you a round of hand-editing JSON, a ⭐ star helps the next person find it.
 
@@ -61,7 +61,7 @@ A selected global server mounts once for the whole profile; inline servers mount
 ## Requirements
 
 - Node.js `^22.19.0 || >=24.0.0`
-- A DeepSeek Harness `0.2.0-rc.2` installation (the plugin composes into a profile)
+- A DeepSeek Harness `0.2.1-rc.3` installation (the plugin composes into a profile)
 - `pnpm` 11.8.0 (`packageManager` in the root manifest pins it)
 
 ## Installation

@@ -44,7 +44,7 @@ body:
     attributes:
       label: Environment
       description: Operating system, Node version, and the DeepSeek Harness build you ran it against.
-      placeholder: "macOS 15.5, Node 22.19.0, pnpm 11.8.0, dsh 0.2.0-rc.2"
+      placeholder: "macOS 15.5, Node 22.19.0, pnpm 11.8.0, dsh 0.2.1-rc.3"
     validations:
       required: true
 

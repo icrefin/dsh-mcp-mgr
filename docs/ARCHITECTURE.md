@@ -57,7 +57,7 @@ container, a centered 960px column, and a header that clears the macOS window
 chrome through `--dsh-frame-top-clearance`.
 
 The title carries the installed plugin version and the author credit as a
-trailing `v1.0.0 Author: icrefin [icrefinai@gmail.com]` chip, per `STYLES.md`.
+trailing `v1.0.1 Author: icrefin [icrefinai@gmail.com]` chip, per `STYLES.md`.
 The version is read once by the host from its own manifest and served over the
 `version` Remote; the chip is simply absent when that read fails.
 
