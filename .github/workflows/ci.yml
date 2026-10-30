@@ -38,7 +38,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Version comes from the root package.json "packageManager" (pnpm@11.8.0).
+      # Version comes from the root package.json "packageManager" (pnpm@11.20.0).
       - name: Set up pnpm
         uses: pnpm/action-setup@v4
 

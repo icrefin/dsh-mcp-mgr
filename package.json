@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "description": "Workspace root for the two dsh-mcp-mgr packages: the host manager and the sidebar panel",
-  "packageManager": "pnpm@11.8.0",
+  "packageManager": "pnpm@11.20.0",
   "engines": {
     "node": "^22.19.0 || >=24.0.0"
   },

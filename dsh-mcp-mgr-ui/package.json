@@ -1,7 +1,7 @@
 {
   "name": "dsh-mcp-mgr-ui",
   "description": "Browser half of dsh-mcp-mgr: the MCP server management panel in the dsh sidebar",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "type": "module",
   "main": "lib/types/index.js",
   "types": "lib/types/index.d.ts",
@@ -39,32 +39,32 @@
   "license": "MIT",
   "peerDependencies": {
     "dsh-mcp-mgr": "workspace:*",
-    "@deepseek-ai/dsh-api-remotes": ">=0.2.1-rc.3",
-    "@deepseek-ai/dsh-api-session-controller": ">=0.2.1-rc.3",
-    "@deepseek-ai/dsh-api-workspace-controller": ">=0.2.1-rc.3",
-    "@deepseek-ai/dsh-client-locale": ">=0.2.1-rc.3",
-    "@deepseek-ai/dsh-client-ui-layout": ">=0.2.1-rc.3",
-    "@deepseek-ai/dsh-client-ui-primitives": ">=0.2.1-rc.3",
-    "@deepseek-ai/dsh-client-ui-renderer": ">=0.2.1-rc.3",
-    "@deepseek-ai/dsh-client-ui-sidebar": ">=0.2.1-rc.3",
-    "@deepseek-ai/dsh-client-ui-slots": ">=0.2.1-rc.3",
+    "@deepseek-ai/dsh-api-remotes": ">=0.2.1-rc.3 || 0.2.1-rc.5",
+    "@deepseek-ai/dsh-api-session-controller": ">=0.2.1-rc.3 || 0.2.1-rc.5",
+    "@deepseek-ai/dsh-api-workspace-controller": ">=0.2.1-rc.3 || 0.2.1-rc.5",
+    "@deepseek-ai/dsh-client-locale": ">=0.2.1-rc.3 || 0.2.1-rc.5",
+    "@deepseek-ai/dsh-client-ui-layout": ">=0.2.1-rc.3 || 0.2.1-rc.5",
+    "@deepseek-ai/dsh-client-ui-primitives": ">=0.2.1-rc.3 || 0.2.1-rc.5",
+    "@deepseek-ai/dsh-client-ui-renderer": ">=0.2.1-rc.3 || 0.2.1-rc.5",
+    "@deepseek-ai/dsh-client-ui-sidebar": ">=0.2.1-rc.3 || 0.2.1-rc.5",
+    "@deepseek-ai/dsh-client-ui-slots": ">=0.2.1-rc.3 || 0.2.1-rc.5",
     "@deepseek-ai/cordis": ">=4.0.5",
     "react": "^18.2.0"
   },
   "dependencies": {},
   "devDependencies": {
     "@deepseek-ai/cordis": "^4.0.5",
-    "@deepseek-ai/dsh-api-remotes": "0.2.1-rc.3",
-    "@deepseek-ai/dsh-api-workspace-controller": "0.2.1-rc.3",
-    "@deepseek-ai/dsh-client-connection": "0.2.1-rc.3",
-    "@deepseek-ai/dsh-client-locale": "0.2.1-rc.3",
-    "@deepseek-ai/dsh-client-store": "0.2.1-rc.3",
-    "@deepseek-ai/dsh-client-ui-layout": "0.2.1-rc.3",
-    "@deepseek-ai/dsh-client-ui-primitives": "0.2.1-rc.3",
-    "@deepseek-ai/dsh-client-ui-renderer": "0.2.1-rc.3",
-    "@deepseek-ai/dsh-client-ui-sidebar": "0.2.1-rc.3",
-    "@deepseek-ai/dsh-client-ui-slots": "0.2.1-rc.3",
-    "@deepseek-ai/dsh-typert-protocol": "0.2.1-rc.3",
+    "@deepseek-ai/dsh-api-remotes": "0.2.1-rc.5",
+    "@deepseek-ai/dsh-api-workspace-controller": "0.2.1-rc.5",
+    "@deepseek-ai/dsh-client-connection": "0.2.1-rc.5",
+    "@deepseek-ai/dsh-client-locale": "0.2.1-rc.5",
+    "@deepseek-ai/dsh-client-store": "0.2.1-rc.5",
+    "@deepseek-ai/dsh-client-ui-layout": "0.2.1-rc.5",
+    "@deepseek-ai/dsh-client-ui-primitives": "0.2.1-rc.5",
+    "@deepseek-ai/dsh-client-ui-renderer": "0.2.1-rc.5",
+    "@deepseek-ai/dsh-client-ui-sidebar": "0.2.1-rc.5",
+    "@deepseek-ai/dsh-client-ui-slots": "0.2.1-rc.5",
+    "@deepseek-ai/dsh-typert-protocol": "0.2.1-rc.5",
     "@types/node": "^22.20.0",
     "@types/react": "~18.3.1",
     "@types/react-dom": "~18.3.5",
@@ -75,7 +75,8 @@
     "unrun": "^0.3.1"
   },
   "engines": {
-    "node": "^22.19.0 || >=24.0.0"
+    "node": "^22.19.0 || >=24.0.0",
+    "dsh": ">=0.2.1-rc.5 <0.2.2-0"
   },
   "scripts": {
     "build": "pnpm run clean && pnpm run build:host && pnpm run build:client",
@@ -85,5 +86,6 @@
     "verify": "node tools/verify-client.mjs",
     "check": "pnpm typecheck && pnpm build && pnpm verify",
     "clean": "node -e \"require('node:fs').rmSync('lib', { recursive: true, force: true })\""
-  }
+  },
+  "packageManager": "pnpm@11.20.0"
 }

@@ -22,7 +22,7 @@ before you write the implementation.
 ## Development setup
 
 This is a pnpm workspace of two TypeScript packages — the host half and the
-browser bundle. It needs **Node `^22.19.0 || >=24.0.0`** and **pnpm 11.8.0**, the
+browser bundle. It needs **Node `^22.19.0 || >=24.0.0`** and **pnpm 11.20.0**, the
 version pinned in the root manifest through `packageManager` (`corepack enable`
 picks it up). The `@deepseek-ai/dsh-*` peer dependencies are published on npm, so
 a clean checkout really does install.
@@ -205,7 +205,7 @@ Open an issue, or start a discussion in the repository's *Discussions* tab.
 ## 开发环境
 
 本项目是一个 pnpm workspace，包含两个 TypeScript 包：宿主侧与浏览器 bundle。需要
-**Node `^22.19.0 || >=24.0.0`** 与 **pnpm 11.8.0**（根 manifest 的 `packageManager`
+**Node `^22.19.0 || >=24.0.0`** 与 **pnpm 11.20.0**（根 manifest 的 `packageManager`
 字段已固定该版本，`corepack enable` 会自动采用）。`@deepseek-ai/dsh-*` 这些 peer
 依赖已发布到 npm，因此在干净的检出上可以直接安装。
 

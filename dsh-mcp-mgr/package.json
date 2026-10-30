@@ -1,6 +1,6 @@
 {
   "name": "dsh-mcp-mgr",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Workspace-level MCP server manager for DeepSeek Harness: a profile-scoped server registry with per-workspace selection, managed from a left-sidebar panel through a Typert Remote",
   "keywords": [
     "deepseek-harness",
@@ -15,7 +15,8 @@
   ],
   "type": "module",
   "engines": {
-    "node": "^22.19.0 || >=24.0.0"
+    "node": "^22.19.0 || >=24.0.0",
+    "dsh": ">=0.2.1-rc.5 <0.2.2-0"
   },
   "main": "lib/types/index.js",
   "types": "lib/types/index.d.ts",
@@ -66,22 +67,23 @@
   },
   "peerDependencies": {
     "@deepseek-ai/cordis": "^4.0.5",
-    "@deepseek-ai/dsh-mcp-client": ">=0.2.1-rc.3",
-    "@deepseek-ai/dsh-scope": ">=0.2.1-rc.3",
-    "@deepseek-ai/dsh-typert-protocol": ">=0.2.1-rc.3",
+    "@deepseek-ai/dsh-mcp-client": ">=0.2.1-rc.3 || 0.2.1-rc.5",
+    "@deepseek-ai/dsh-scope": ">=0.2.1-rc.3 || 0.2.1-rc.5",
+    "@deepseek-ai/dsh-typert-protocol": ">=0.2.1-rc.3 || 0.2.1-rc.5",
     "@deepseek-ai/schemastery": "^3.18.5"
   },
   "license": "MIT",
   "devDependencies": {
     "@deepseek-ai/cordis": "^4.0.5",
-    "@deepseek-ai/dsh-mcp-client": "0.2.1-rc.3",
-    "@deepseek-ai/dsh-session": "0.2.1-rc.3",
-    "@deepseek-ai/dsh-scope": "0.2.1-rc.3",
-    "@deepseek-ai/dsh-typert-protocol": "0.2.1-rc.3",
-    "@deepseek-ai/dsh-workspace": "0.2.1-rc.3",
+    "@deepseek-ai/dsh-mcp-client": "0.2.1-rc.5",
+    "@deepseek-ai/dsh-session": "0.2.1-rc.5",
+    "@deepseek-ai/dsh-scope": "0.2.1-rc.5",
+    "@deepseek-ai/dsh-typert-protocol": "0.2.1-rc.5",
+    "@deepseek-ai/dsh-workspace": "0.2.1-rc.5",
     "@deepseek-ai/schemastery": "^3.18.5",
     "@types/node": "^22.20.0",
     "tsdown": "0.22.2",
     "typescript": "~5.7.2"
-  }
+  },
+  "packageManager": "pnpm@11.20.0"
 }
