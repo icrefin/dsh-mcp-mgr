@@ -5,7 +5,7 @@
   "description": "Workspace root for the two dsh-mcp-mgr packages: the host manager and the sidebar panel",
   "packageManager": "pnpm@11.20.0",
   "engines": {
-    "node": "^22.19.0 || >=24.0.0"
+    "node": ">=24.9.0"
   },
   "scripts": {
     "typecheck": "pnpm --filter dsh-mcp-mgr typecheck && pnpm --filter dsh-mcp-mgr-ui typecheck",
@@ -15,5 +15,6 @@
     "check": "pnpm typecheck && pnpm build && pnpm verify",
     "install:profile": "sh tools/install-into-profile.sh"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "files": []
 }
