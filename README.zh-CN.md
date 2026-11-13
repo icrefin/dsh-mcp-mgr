@@ -11,7 +11,7 @@
 [![Stars](https://img.shields.io/github/stars/icrefin/dsh-mcp-mgr?style=flat-square)](https://github.com/icrefin/dsh-mcp-mgr/stargazers)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen?style=flat-square)](https://github.com/icrefin/dsh-mcp-mgr/pulls)
 [![Node](https://img.shields.io/badge/node-%3E%3D24.9-339933?style=flat-square&logo=node.js)](https://nodejs.org)
-[![dsh](https://img.shields.io/badge/dsh-0.2.2--rc.1-4B5563?style=flat-square)](https://github.com/deepseek-ai/deepseek-harness)
+[![dsh](https://img.shields.io/badge/dsh-0.2.2--rc.2-4B5563?style=flat-square)](https://github.com/deepseek-ai/deepseek-harness)
 
 > 如果这个插件帮你省下了一轮手改 JSON 的功夫，欢迎点一个 ⭐ Star，让更多人看到它。
 
@@ -61,7 +61,7 @@ MCP 服务器是**按工作区**声明的，于是同一台服务器的描述会
 ## 环境要求
 
 - Node.js `>=24.9.0`
-- 一套 DeepSeek Harness `0.2.2-rc.1` 安装（插件组合进某个 profile）
+- 一套 DeepSeek Harness `0.2.2-rc.2` 安装（插件组合进某个 profile）
 - `pnpm` 11.20.0（由根清单的 `packageManager` 固定）
 
 ## 安装
